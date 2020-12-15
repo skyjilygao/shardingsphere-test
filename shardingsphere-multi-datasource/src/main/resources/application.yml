@@ -1,0 +1,46 @@
+spring:
+  shardingsphere:
+    props:
+      sql:
+        show:
+          true
+    datasource:
+      names: ds1,ds2,ds3
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/ds_01?serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+      ds2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/ds_02?serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+      ds3:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://47.88.157.23:3306/aea_test?characterEncoding=utf8&useUnicode=true&autoReconnect=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+        username: aeat
+        password: ca3y4cRKL8526
+
+    sharding:
+      default-data-source-name: ds1
+      default-database-strategy:
+        hint:
+          algorithm-class-name: cn.skyjilygao.study.shardingsphere.multidatasource.shardingsphere.MyDatasourceRoutingAlgorithm
+      tables:
+#        user:
+#          actualDataNodes: ds1.user
+        order:
+          actualDataNodes: ds2.order
+        bc_admin_users:
+          actualDataNodes: ds3.bc_admin_users
+      defaultTableStrategy:
+        none:
+          any: ""
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.entity

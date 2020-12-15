@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.mapper.BcAdminUsersMapper" >
+  <resultMap id="BaseResultMap" type="cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.entity.BcAdminUsers" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="access" property="access" jdbcType="VARCHAR" />
+    <result column="export" property="export" jdbcType="BIT" />
+    <result column="last_login" property="lastLogin" jdbcType="INTEGER" />
+    <result column="if_show" property="ifShow" jdbcType="BIT" />
+    <result column="ctime" property="ctime" jdbcType="INTEGER" />
+    <result column="fb_token" property="fbToken" jdbcType="VARCHAR" />
+    <result column="fb_id" property="fbId" jdbcType="BIGINT" />
+    <result column="fb_token_status" property="fbTokenStatus" jdbcType="INTEGER" />
+    <result column="fb_token_desc" property="fbTokenDesc" jdbcType="VARCHAR" />
+    <result column="fb_name" property="fbName" jdbcType="VARCHAR" />
+    <result column="fb_pic" property="fbPic" jdbcType="VARCHAR" />
+    <result column="fb_email" property="fbEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.entity.BcAdminUsers" extends="BaseResultMap" >
+    <result column="act_id" property="actId" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, email, mobile, access, export, last_login, if_show, ctime,
+    fb_token, fb_id, fb_token_status, fb_token_desc, fb_name, fb_pic, fb_email
+  </sql>
+  <sql id="Blob_Column_List" >
+    act_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+
+    from bc_admin_users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bc_admin_users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.entity.BcAdminUsers" >
+    insert into bc_admin_users (username, password,
+      email, mobile, access, 
+      export, last_login, if_show, 
+      ctime, fb_token, fb_id, 
+      fb_token_status, fb_token_desc, fb_name, 
+      fb_pic, fb_email, act_id
+      )
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{access,jdbcType=VARCHAR}, 
+      #{export,jdbcType=BIT}, #{lastLogin,jdbcType=INTEGER}, #{ifShow,jdbcType=BIT}, 
+      #{ctime,jdbcType=INTEGER}, #{fbToken,jdbcType=VARCHAR}, #{fbId,jdbcType=BIGINT}, 
+      #{fbTokenStatus,jdbcType=INTEGER}, #{fbTokenDesc,jdbcType=VARCHAR}, #{fbName,jdbcType=VARCHAR}, 
+      #{fbPic,jdbcType=VARCHAR}, #{fbEmail,jdbcType=VARCHAR}, #{actId,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.entity.BcAdminUsers" >
+    insert into bc_admin_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="access != null" >
+        access,
+      </if>
+      <if test="export != null" >
+        export,
+      </if>
+      <if test="lastLogin != null" >
+        last_login,
+      </if>
+      <if test="ifShow != null" >
+        if_show,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="fbToken != null" >
+        fb_token,
+      </if>
+      <if test="fbId != null" >
+        fb_id,
+      </if>
+      <if test="fbTokenStatus != null" >
+        fb_token_status,
+      </if>
+      <if test="fbTokenDesc != null" >
+        fb_token_desc,
+      </if>
+      <if test="fbName != null" >
+        fb_name,
+      </if>
+      <if test="fbPic != null" >
+        fb_pic,
+      </if>
+      <if test="fbEmail != null" >
+        fb_email,
+      </if>
+      <if test="actId != null" >
+        act_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="access != null" >
+        #{access,jdbcType=VARCHAR},
+      </if>
+      <if test="export != null" >
+        #{export,jdbcType=BIT},
+      </if>
+      <if test="lastLogin != null" >
+        #{lastLogin,jdbcType=INTEGER},
+      </if>
+      <if test="ifShow != null" >
+        #{ifShow,jdbcType=BIT},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="fbToken != null" >
+        #{fbToken,jdbcType=VARCHAR},
+      </if>
+      <if test="fbId != null" >
+        #{fbId,jdbcType=BIGINT},
+      </if>
+      <if test="fbTokenStatus != null" >
+        #{fbTokenStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fbTokenDesc != null" >
+        #{fbTokenDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="fbName != null" >
+        #{fbName,jdbcType=VARCHAR},
+      </if>
+      <if test="fbPic != null" >
+        #{fbPic,jdbcType=VARCHAR},
+      </if>
+      <if test="fbEmail != null" >
+        #{fbEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="actId != null" >
+        #{actId,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.entity.BcAdminUsers" >
+    update bc_admin_users
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="access != null" >
+        access = #{access,jdbcType=VARCHAR},
+      </if>
+      <if test="export != null" >
+        export = #{export,jdbcType=BIT},
+      </if>
+      <if test="lastLogin != null" >
+        last_login = #{lastLogin,jdbcType=INTEGER},
+      </if>
+      <if test="ifShow != null" >
+        if_show = #{ifShow,jdbcType=BIT},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="fbToken != null" >
+        fb_token = #{fbToken,jdbcType=VARCHAR},
+      </if>
+      <if test="fbId != null" >
+        fb_id = #{fbId,jdbcType=BIGINT},
+      </if>
+      <if test="fbTokenStatus != null" >
+        fb_token_status = #{fbTokenStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fbTokenDesc != null" >
+        fb_token_desc = #{fbTokenDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="fbName != null" >
+        fb_name = #{fbName,jdbcType=VARCHAR},
+      </if>
+      <if test="fbPic != null" >
+        fb_pic = #{fbPic,jdbcType=VARCHAR},
+      </if>
+      <if test="fbEmail != null" >
+        fb_email = #{fbEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="actId != null" >
+        act_id = #{actId,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.entity.BcAdminUsers" >
+    update bc_admin_users
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      access = #{access,jdbcType=VARCHAR},
+      export = #{export,jdbcType=BIT},
+      last_login = #{lastLogin,jdbcType=INTEGER},
+      if_show = #{ifShow,jdbcType=BIT},
+      ctime = #{ctime,jdbcType=INTEGER},
+      fb_token = #{fbToken,jdbcType=VARCHAR},
+      fb_id = #{fbId,jdbcType=BIGINT},
+      fb_token_status = #{fbTokenStatus,jdbcType=INTEGER},
+      fb_token_desc = #{fbTokenDesc,jdbcType=VARCHAR},
+      fb_name = #{fbName,jdbcType=VARCHAR},
+      fb_pic = #{fbPic,jdbcType=VARCHAR},
+      fb_email = #{fbEmail,jdbcType=VARCHAR},
+      act_id = #{actId,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.entity.BcAdminUsers" >
+    update bc_admin_users
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      access = #{access,jdbcType=VARCHAR},
+      export = #{export,jdbcType=BIT},
+      last_login = #{lastLogin,jdbcType=INTEGER},
+      if_show = #{ifShow,jdbcType=BIT},
+      ctime = #{ctime,jdbcType=INTEGER},
+      fb_token = #{fbToken,jdbcType=VARCHAR},
+      fb_id = #{fbId,jdbcType=BIGINT},
+      fb_token_status = #{fbTokenStatus,jdbcType=INTEGER},
+      fb_token_desc = #{fbTokenDesc,jdbcType=VARCHAR},
+      fb_name = #{fbName,jdbcType=VARCHAR},
+      fb_pic = #{fbPic,jdbcType=VARCHAR},
+      fb_email = #{fbEmail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectBySelective" resultMap="BaseResultMap" parameterType="cn.skyjilygao.study.shardingsphere.multidatasource.model.mybatis.entity.BcAdminUsers" >
+    select
+    <include refid="Base_Column_List" />
+    from bc_admin_users
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="username != null" >
+        and username = #{username,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null" >
+        and password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null" >
+        and email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="mobile != null" >
+        and mobile = #{mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="access != null" >
+        and access = #{access,jdbcType=VARCHAR}
+      </if>
+      <if test="export != null" >
+        and export = #{export,jdbcType=BIT}
+      </if>
+      <if test="lastLogin != null" >
+        and last_login = #{lastLogin,jdbcType=INTEGER}
+      </if>
+      <if test="ifShow != null" >
+        and if_show = #{ifShow,jdbcType=BIT}
+      </if>
+      <if test="ctime != null" >
+        and ctime = #{ctime,jdbcType=INTEGER}
+      </if>
+      <if test="fbToken != null" >
+        and fb_token = #{fbToken,jdbcType=VARCHAR}
+      </if>
+      <if test="fbId != null" >
+        and fb_id = #{fbId,jdbcType=BIGINT}
+      </if>
+      <if test="fbTokenStatus != null" >
+        and fb_token_status = #{fbTokenStatus,jdbcType=INTEGER}
+      </if>
+      <if test="fbTokenDesc != null" >
+        and fb_token_desc = #{fbTokenDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="fbName != null" >
+        and fb_name = #{fbName,jdbcType=VARCHAR}
+      </if>
+      <if test="fbPic != null" >
+        and fb_pic = #{fbPic,jdbcType=VARCHAR}
+      </if>
+      <if test="fbEmail != null" >
+        and fb_email = #{fbEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="actId != null" >
+        and act_id = #{actId,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectFbIdGtZeroAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bc_admin_users
+    where fb_id > 0
+  </select>
+
+  <update id="uploadTokenStatusByIdBatch" parameterType="java.util.List" >
+    <foreach collection="list" item="item" index="index" separator=";">
+      update bc_admin_users
+      <set>
+        <if test="item.fbTokenStatus != null" >
+          fb_token_status = #{item.fbTokenStatus,jdbcType=INTEGER},
+        </if>
+        <if test="item.fbTokenDesc != null" >
+          fb_token_desc = #{item.fbTokenDesc,jdbcType=VARCHAR}
+        </if>
+      </set>
+      where id = #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+</mapper>
